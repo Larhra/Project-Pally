@@ -1,29 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import SplashScreen from './SplashScreen';
-import './App.css';
+"use client"
 
-const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
+import { useState, useEffect } from "react"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import SplashScreen from "./components/SplashScreen"
+import GetStarted from "./pages/GetStarted"
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
+import Dashboard from "./pages/Dashboard"
+import Withdrawal from "./pages/Withdrawal"
+import Timelock from "./pages/Timelock"
+import "./App.css"
+
+function App() {
+  const [showSplash, setShowSplash] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
-    // Simulate a loading process
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000); // Adjust the time as needed
-  }, []);
+    const timer = setTimeout(() => {
+      setShowSplash(false)
+    }, 2500)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  const handleLogin = () => {
+    setIsAuthenticated(true)
+  }
+
+  if (showSplash) {
+    return <SplashScreen />
+  }
 
   return (
-    <>
-      {isLoading ? (
-        <SplashScreen />
-      ) : (
-        <div className="app-content">
-          {/* Your main app content goes here */}
-          <h1>Welcome to My App</h1>
-        </div>
-      )}
-    </>
-  );
-};
+    <Router>
+      <Routes>
+        <Route path="/" element={<GetStarted />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/signup" element={<Signup onSignup={handleLogin} />} />
+        <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
+        <Route path="/withdrawal" element={isAuthenticated ? <Withdrawal /> : <Navigate to="/login" />} />
+        <Route path="/timelock" element={isAuthenticated ? <Timelock /> : <Navigate to="/login" />} />
+      </Routes>
+    </Router>
+  )
+}
 
-export default App;
+export default App
+

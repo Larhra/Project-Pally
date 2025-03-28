@@ -1,15 +1,31 @@
-import React from 'react';
-import './SplashScreen.css'; // Import the CSS file for styling
+"use client"
 
-const SplashScreen = () => {
+import { useState, useEffect } from "react"
+import "../styles/SplashScreen.css"
+
+function SplashScreen() {
+  const [fadeOut, setFadeOut] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFadeOut(true)
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <div className="splash-container">
+    <div className={`splash-container ${fadeOut ? "fade-out" : ""}`}>
       <div className="splash-content">
-        <div className="loader"></div> {/* Optional: Add a loading spinner */}
-        <h1>Loading...</h1>
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/splash.jpg.JPG-eB4UVs3PuahbyOClbPuu3UYVoCuQXS.jpeg"
+          alt="PALLY - send money with ease"
+          className="splash-logo"
+        />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SplashScreen;
+export default SplashScreen
+

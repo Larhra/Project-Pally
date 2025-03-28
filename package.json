@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@capacitor/cli": "^7.1.0",
+    "@capacitor/core": "^7.1.0",
+    "@ionic/react": "^8.5.2",
+    "react-router-dom": "^7.4.0"
+  }
+}

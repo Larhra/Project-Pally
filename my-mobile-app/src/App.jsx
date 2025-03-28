@@ -1,16 +1,29 @@
-import { useState } from "react";
-import SplashScreen from "./components/SplashScreen";
+import React, { useState, useEffect } from 'react';
+import SplashScreen from './SplashScreen';
+import './App.css';
 
-function App() {
-  const [showSplash, setShowSplash] = useState(true);
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
 
-  return showSplash ? (
-    <SplashScreen onFinish={() => setShowSplash(false)} />
-  ) : (
-    <div className="app">
-      <h1>Welcome to Pally App! 🚀</h1>
-    </div>
+  useEffect(() => {
+    // Simulate a loading process
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // Adjust the time as needed
+  }, []);
+
+  return (
+    <>
+      {isLoading ? (
+        <SplashScreen />
+      ) : (
+        <div className="app-content">
+          {/* Your main app content goes here */}
+          <h1>Welcome to My App</h1>
+        </div>
+      )}
+    </>
   );
-}
+};
 
 export default App;

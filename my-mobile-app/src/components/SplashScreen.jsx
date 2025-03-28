@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
-import "./SplashScreen.css"; // Import the CSS file
+import React from 'react';
+import './SplashScreen.css'; // Import the CSS file for styling
 
-const SplashScreen = ({ onFinish }) => {
-  const [fadeOut, setFadeOut] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setFadeOut(true), 2000); // Start fade-out effect after 2s
-    setTimeout(onFinish, 2500); // Remove splash screen after 2.5s
-  }, [onFinish]);
-
+const SplashScreen = () => {
   return (
-    <div className={`splash-screen ${fadeOut ? "fade-out" : ""}`}>
-      <img src="/splash.jpg" alt="Splash Screen" className="splash-image" />
+    <div className="splash-container">
+      <div className="splash-content">
+        <div className="loader"></div> {/* Optional: Add a loading spinner */}
+        <h1>Loading...</h1>
+      </div>
     </div>
   );
 };

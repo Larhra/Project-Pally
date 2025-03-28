@@ -1,0 +1,36 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+  
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    text-decoration: none;
+    color: #888;
+  }
+  
+  .nav-item.active {
+    color: #ff0066;
+  }
+  
+  .nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+  }
+  
+  .nav-text {
+    font-size: 12px;
+  }
+  
+  
